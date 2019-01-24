@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Beer
@@ -68,6 +69,16 @@ class Beer
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CommandDetails", mappedBy="command")
+     */
+    private $commanddetails;
+
+    public function __construct()
+    {
+        $this->commanddetails = new ArrayCollection();
+    }
 
 
     /**
@@ -246,5 +257,39 @@ class Beer
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Add commanddetail
+     *
+     * @param \AppBundle\Entity\CommandDetails $commanddetail
+     *
+     * @return Beer
+     */
+    public function addCommanddetail(\AppBundle\Entity\CommandDetails $commanddetail)
+    {
+        $this->commanddetails[] = $commanddetail;
+
+        return $this;
+    }
+
+    /**
+     * Remove commanddetail
+     *
+     * @param \AppBundle\Entity\CommandDetails $commanddetail
+     */
+    public function removeCommanddetail(\AppBundle\Entity\CommandDetails $commanddetail)
+    {
+        $this->commanddetails->removeElement($commanddetail);
+    }
+
+    /**
+     * Get commanddetails
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommanddetails()
+    {
+        return $this->commanddetails;
     }
 }

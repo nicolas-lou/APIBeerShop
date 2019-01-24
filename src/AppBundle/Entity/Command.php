@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Command
@@ -47,6 +48,16 @@ class Command
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CommandDetails", mappedBy="command")
+     */
+    private $commanddetails;
+
+    public function __construct()
+    {
+        $this->commanddetails = new ArrayCollection();
+    }
 
 
     /**
@@ -153,5 +164,39 @@ class Command
     public function getTotal()
     {
         return $this->total;
+    }
+
+    /**
+     * Add commanddetail
+     *
+     * @param \AppBundle\Entity\CommandDetails $commanddetail
+     *
+     * @return Command
+     */
+    public function addCommanddetail(\AppBundle\Entity\CommandDetails $commanddetail)
+    {
+        $this->commanddetails[] = $commanddetail;
+
+        return $this;
+    }
+
+    /**
+     * Remove commanddetail
+     *
+     * @param \AppBundle\Entity\CommandDetails $commanddetail
+     */
+    public function removeCommanddetail(\AppBundle\Entity\CommandDetails $commanddetail)
+    {
+        $this->commanddetails->removeElement($commanddetail);
+    }
+
+    /**
+     * Get commanddetails
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommanddetails()
+    {
+        return $this->commanddetails;
     }
 }
