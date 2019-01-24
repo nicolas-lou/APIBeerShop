@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -41,6 +42,16 @@ class User
      * @ORM\Column(name="age", type="integer")
      */
     private $age;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="user")
+     */
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
 
 
     /**
