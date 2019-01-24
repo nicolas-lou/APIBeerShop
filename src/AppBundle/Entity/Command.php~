@@ -130,28 +130,4 @@ class Command
     {
         return $this->user;
     }
-
-    /**
-     * Set total
-     *
-     * @param float $total
-     *
-     * @return Command
-     */
-    public function setTotal($total)
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    /**
-     * Get total
-     *
-     * @return float
-     */
-    public function getTotal()
-    {
-        return $this->total;
-    }
 }
