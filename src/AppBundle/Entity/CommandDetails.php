@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Command;
+use AppBundle\Entity\Beer;
 
 /**
  * CommandDetails
@@ -42,7 +44,7 @@ class CommandDetails
     private $command;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Commanddetails", inversedBy="beers")
+     * @ORM\ManyToOne(targetEntity="Beer", inversedBy="beers")
      * @ORM\JoinColumn(name="beer_id", referencedColumnName="id")
      */
     private $beer;
@@ -133,11 +135,11 @@ class CommandDetails
     /**
      * Set beer
      *
-     * @param \AppBundle\Entity\Commanddetails $beer
+     * @param Beer $beer
      *
      * @return CommandDetails
      */
-    public function setBeer(\AppBundle\Entity\Commanddetails $beer = null)
+    public function setBeer(Beer $beer = null)
     {
         $this->beer = $beer;
 
@@ -147,7 +149,7 @@ class CommandDetails
     /**
      * Get beer
      *
-     * @return \AppBundle\Entity\Commanddetails
+     * @return Beer
      */
     public function getBeer()
     {

@@ -33,7 +33,7 @@ class CommandController extends Controller{
         $command = new Command();
         $variable= json_decode($request->getContent(), true);
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-        $date = new DateTime();
+        $date = new DateTime("Now");
         $total = $variable['total'];
         $status = $variable['status'];
 
@@ -60,13 +60,33 @@ class CommandController extends Controller{
             $commandsOk[]= [
                 'id'=>$command->getId(),
                 'user'=>$command->getUser()->getId(),
-                'date'=>$command->getDate(),
+                'date'=>$command->getDate()->format("Y-m-d"),
                 'status'=>$command->getStatus(),
                 'total'=>$command->getTotal()
 
             ];
         }
         return new JsonResponse($commandsOk);
+    }
+
+
+    /**
+     * @Route("/getcommand/{id}", name="getcommand", requirements={"id"="\d+"}, methods={"GET"})
+     *
+     */
+    public function getCommandAction($id)
+    {
+        $command = $this->getDoctrine()->getRepository(Command::class)->find($id);
+
+        $commandOk=[
+            'id'=>$command->getId(),
+            'user'=>$command->getUser()->getId(),
+            'date'=>$command->getDate()->format('Y-m-d'),
+            'status'=>$command->getStatus(),
+            'total'=>$command->getTotal()
+        ];
+
+        return new JsonResponse($commandOk);
     }
 
 }

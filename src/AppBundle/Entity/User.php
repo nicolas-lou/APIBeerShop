@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Command;
 
 /**
  * User
@@ -143,7 +144,7 @@ class User
      *
      * @return User
      */
-    public function addCommand(\AppBundle\Entity\Commande $command)
+    public function addCommand(Command $command)
     {
         $this->commands[] = $command;
 
@@ -155,7 +156,7 @@ class User
      *
      * @param \AppBundle\Entity\Commande $command
      */
-    public function removeCommand(\AppBundle\Entity\Commande $command)
+    public function removeCommand(Command $command)
     {
         $this->commands->removeElement($command);
     }

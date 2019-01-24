@@ -71,7 +71,7 @@ class Beer
     private $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="CommandDetails", mappedBy="command")
+     * @ORM\OneToMany(targetEntity="CommandDetails", mappedBy="beer")
      */
     private $commanddetails;
 
