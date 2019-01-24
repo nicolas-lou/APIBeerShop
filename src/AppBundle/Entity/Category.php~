@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -73,38 +72,5 @@ class Category
     {
         return $this->name;
     }
-
-    /**
-     * Add beer
-     *
-     * @param \AppBundle\Entity\Beer $beer
-     *
-     * @return Category
-     */
-    public function addBeer(\AppBundle\Entity\Beer $beer)
-    {
-        $this->beers[] = $beer;
-
-        return $this;
-    }
-
-    /**
-     * Remove beer
-     *
-     * @param \AppBundle\Entity\Beer $beer
-     */
-    public function removeBeer(\AppBundle\Entity\Beer $beer)
-    {
-        $this->beers->removeElement($beer);
-    }
-
-    /**
-     * Get beers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBeers()
-    {
-        return $this->beers;
-    }
 }
+
